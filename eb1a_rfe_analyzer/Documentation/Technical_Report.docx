@@ -1,0 +1,28 @@
+# VisaCompanion EB-1A RFE Risk Analyzer  
+*Technical Report | July 30, 2025*  
+
+---
+
+## **Problem Framing & Approach**  
+**Objective**: Develop an AI tool to predict EB-1A RFE triggers by analyzing petition documents against USCIS criteria.  
+
+**Solution**:  
+- Hybrid rule-based/NLP system using:  
+  - **spaCy**: Detect vague language ("world-class")  
+  - **PyMuPDF**: Extract PDF text  
+  - **python-docx**: Generate legal memos  
+- Implements 10 EB-1A criteria checks from USCIS Policy Manual 6.2.1-6.2.8  
+
+---
+
+## **Architecture & Tool Design**  
+```mermaid  
+graph TD  
+    A[Input] --> B(Document Parser)  
+    B --> C[Analyzer]  
+    C --> D[Report Generator]  
+    D --> E[Output DOCX]  
+      
+    B -.-> F[PDF/DOCX Support]  
+    C -.-> G[Criteria Checks]  
+    
